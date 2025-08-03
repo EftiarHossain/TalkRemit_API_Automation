@@ -1,0 +1,31 @@
+name: Run Talkremit Newman Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-postman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Newman and HTML Reporter
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
+
+      - name: Run Shohoz Postman Collection with HTML Report
+        run: |
+          newman run "./Talkremit_API.json" \
+            --environment "./Talkremit_Env.json" \
+            --reporters cli,html \
+            --reporter-html-export newman-report.html
+
+      - name: Upload HTML Newman Report
+        if: always()  # ✅ Ensures report uploads even if Newman fails
+        uses: actions/upload-artifact@v4  # ✅ updated version
+        with:
+          name: newman-html-report
+          path: newman-report.html
