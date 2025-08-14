@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "BaseURL",
-			"value": "https://talkremit-wallet-info.local.fintech23.xyz",
+			"value": "https://talkremit-wallet-info.global.fintech23.xyz",
 			"type": "default",
 			"enabled": true
 		},
@@ -28,25 +28,25 @@
 		},
 		{
 			"key": "InvalidUserIdentity",
-			"value": "",
+			"value": "test",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "InvalidCurrency",
-			"value": "",
+			"value": "BDT",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "InvalidTransactionAmount",
-			"value": "",
+			"value": "1,00",
 			"type": "default",
 			"enabled": true
 		},
 		{
 			"key": "DuplicateCurrency",
-			"value": "",
+			"value": "USD",
 			"type": "default",
 			"enabled": true
 		},
@@ -64,7 +64,7 @@
 		},
 		{
 			"key": "SecondCountryCode",
-			"value": "",
+			"value": "CA",
 			"type": "default",
 			"enabled": true
 		},
