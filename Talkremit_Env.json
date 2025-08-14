@@ -1,153 +1,81 @@
 {
-	"id": "a9eb7265-9b29-48f4-8b0e-ee1d0f6072fd",
-	"name": "Shohoz_Test_Envirounment",
+	"id": "dc9f0737-872e-40bb-8961-9742280b32ea",
+	"name": "Talkremit",
 	"values": [
 		{
-			"key": "shohozAccessToken",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjNTVhZTZhMjRjMTQ0M2U3ODE0M2M5MWZiNmMyMWVlNiIsImV4cCI6MTc1NDIxMjAzMCwiaWF0IjoxNzU0MjExNDMwfQ.3l4-tOJ15TGxbQ7rm-2a7Zd0ALV2wwUyC20NYwbDCLk",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "access_token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MTM3MDhlMDk4YzU0ZWNmYTgzMjRhYjk0Njc0NTc0YyIsImV4cCI6MTc1MzEyNDM3OSwiaWF0IjoxNzUyOTk5MjE2fQ.cpTc--l8JwZDQkpS7glIrDH0lQ9mC4jzaZgnIlAIIMg",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "admin_access_token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MTM3MDhlMDk4YzU0ZWNmYTgzMjRhYjk0Njc0NTc0YyIsImV4cCI6MTc1NDMzNjU5MSwiaWF0IjoxNzU0MjExNDI3fQ.SrzHZzt4P_sz1FsNyXNEt7FSurdf4_AAZyWe1OqUg50",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "Order_ID",
-			"value": "05cb6dac-6780-490b-b40f-9a6ed6f35b3c",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "BD_Ticket_Order_ID",
-			"value": "be32c983-d386-493d-b891-0b374078604e",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "Order_id",
-			"value": "d541446f-ee20-4d78-b1db-8ed281240448",
-			"type": "any",
-			"enabled": true
-		},
-		{
 			"key": "BaseURL",
-			"value": "https://qa-abbl-gateway.global.fintech23.xyz",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "price",
-			"value": "4000",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "tokenSessionId",
-			"value": "78b2a946-e44f-419a-ba30-60b4ff0243cc",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "sessionId",
-			"value": "78b2a946-e44f-419a-ba30-60b4ff0243cc",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "totalPrice",
-			"value": "4085",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "sourceAccounts",
-			"value": "[\"4005193224300\",\"4005193224000\",\"4005193224303\"]",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "sourceAccount_0",
-			"value": "4005193224300",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "sourceAccount_1",
-			"value": "4005193224000",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "sourceAccount_2",
-			"value": "4005193224303",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "shohoz_txn_id",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "shohoz_order_id",
-			"value": "05cb6dac-6780-490b-b40f-9a6ed6f35b3c",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "shohoz_total_amount",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "shohoz_seat_numbers",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "shohoz_bill_amount",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "transactionId",
-			"value": "",
-			"type": "any",
-			"enabled": true
-		},
-		{
-			"key": "Username",
-			"value": "EFTIAR",
+			"value": "https://talkremit-wallet-info.local.fintech23.xyz",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "Password",
-			"value": "123456@Aa",
+			"key": "ValidUserIdentity",
+			"value": "UserIdentity214",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "pnr",
+			"key": "ValidCurrency",
+			"value": "USD",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ValidTransactionAmount",
+			"value": "100.0",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "InvalidUserIdentity",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "InvalidCurrency",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "InvalidTransactionAmount",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DuplicateCurrency",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "SecondCurrency",
+			"value": "CAD",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "userIdentity",
 			"value": "",
 			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "SecondCountryCode",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Valid2ndUserIdentity",
+			"value": "eftiar",
+			"type": "default",
 			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2025-08-03T09:32:59.249Z",
-	"_postman_exported_using": "Postman/11.53.0"
+	"_postman_exported_at": "2025-08-14T08:50:08.903Z",
+	"_postman_exported_using": "Postman/11.58.2"
 }
