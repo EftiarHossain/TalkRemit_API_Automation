@@ -1463,6 +1463,237 @@
 					"response": []
 				},
 				{
+					"name": "Withdraw With Empty User Identity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is ECS400\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"ECS400\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates invalid request data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Invalid request data\");",
+									"});",
+									"",
+									"pm.test(\"UserIdentity validation message is present\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data.userIdentity).to.eql(\"User Identity is required\");",
+									"});",
+									"",
+									"pm.test(\"Data field is not null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"\",\r\n  \"currency\": \"{{ValidCurrency}}\",\r\n  \"transactionAmount\": {{ValidTransactionAmount}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/withdraw",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw With Empty Currency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is ECS400\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"ECS400\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates invalid request data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Invalid request data\");",
+									"});",
+									"",
+									"pm.test(\"Currency validation message is present\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data.currency).to.eql(\"Currency is required\");",
+									"});",
+									"",
+									"pm.test(\"Data field is not null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{ValidUserIdentity}}\",\r\n  \"currency\": \"\",\r\n  \"transactionAmount\": {{ValidTransactionAmount}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/withdraw",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw With Empty Transaction Amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{ValidUserIdentity}}\",\r\n  \"currency\": \"{{ValidCurrency}}\",\r\n  \"transactionAmount\": \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/withdraw",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw using negative balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is WIS503\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"WIS503\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates negative amount\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Negative Balance is not allowed\");",
+									"});",
+									"",
+									"pm.test(\"Data field is null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200); // Adjust if API returns different status",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{Valid2ndUserIdentity}}\",\r\n  \"currency\": \"{{SecondCurrency}}\",\r\n  \"transactionAmount\": -100\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/withdraw",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Withdraw using invalid user identity",
 					"event": [
 						{
@@ -1602,6 +1833,65 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"userIdentity\": \"{{ValidUserIdentity}}\",\r\n  \"currency\": \"{{ValidCurrency}}\",\r\n  \"transactionAmount\": {{InvalidTransactionAmount}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/withdraw",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw using wallet not having balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is WIS503\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"WIS503\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates insufficient balance\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Not enough balance in Account\");",
+									"});",
+									"",
+									"pm.test(\"Data field is null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200); // Adjust if API returns different status",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{Valid2ndUserIdentity}}\",\r\n  \"currency\": \"{{SecondCurrency}}\",\r\n  \"transactionAmount\": {{ValidTransactionAmount}}\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2059,6 +2349,237 @@
 							"body": "{\n    \"responseCode\": \"WIS503\",\n    \"responseMessage\": \"Operation Successful.\",\n    \"data\": null\n}"
 						}
 					]
+				},
+				{
+					"name": "TopUp using negative balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is WIS503\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"WIS503\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates negative amount\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Negative Balance is not allowed\");",
+									"});",
+									"",
+									"pm.test(\"Data field is null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 200\", function () {",
+									"    pm.response.to.have.status(200); // Adjust if API returns different status",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{Valid2ndUserIdentity}}\",\r\n  \"currency\": \"{{SecondCurrency}}\",\r\n  \"transactionAmount\": -100\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/top-up",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"top-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topup With empty user identity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is ECS400\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"ECS400\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates invalid request data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Invalid request data\");",
+									"});",
+									"",
+									"pm.test(\"UserIdentity validation message is present\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data.userIdentity).to.eql(\"User Identity is required\");",
+									"});",
+									"",
+									"pm.test(\"Data field is not null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"\",\r\n  \"currency\": \"{{ValidCurrency}}\",\r\n  \"transactionAmount\": {{ValidTransactionAmount}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/top-up",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"top-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topup with empty currency",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code is ECS400\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseCode).to.eql(\"ECS400\");",
+									"});",
+									"",
+									"pm.test(\"Response message indicates invalid request data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.responseMessage).to.eql(\"Invalid request data\");",
+									"});",
+									"",
+									"pm.test(\"Currency validation message is present\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data.currency).to.eql(\"Currency is required\");",
+									"});",
+									"",
+									"pm.test(\"Data field is not null\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).to.not.be.null;",
+									"});",
+									"",
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{ValidUserIdentity}}\",\r\n  \"currency\": \"\",\r\n  \"transactionAmount\": {{ValidTransactionAmount}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/top-up",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"top-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Topup with empty Amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"HTTP status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userIdentity\": \"{{ValidUserIdentity}}\",\r\n  \"currency\": \"{{ValidCurrency}}\",\r\n  \"transactionAmount\": \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/api/v1/wallet/account/top-up",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wallet",
+								"account",
+								"top-up"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
